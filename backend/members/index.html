@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+body{font-family:sans-serif;margin:20px;background:#1a1a1a;color:#e0e0e0;}
+.stats{margin-bottom:20px;padding:15px;border:1px solid #444;border-radius:6px;background:#2a2a2a;}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.card{border:1px solid #444;padding:10px;border-radius:5px;font-size:14px;background:#2a2a2a;}
+.pagination{margin-top:20px;text-align:center;}
+.pagination a{margin:0 5px;text-decoration:none;color:#6b9bd1;padding:5px 10px;background:#2a2a2a;border:1px solid #444;border-radius:3px;cursor:pointer;}
+.pagination a:hover:not(.disabled){background:#3a3a3a;}
+.pagination a.disabled{color:#666;pointer-events:none;cursor:default;}
+.search-form{margin-bottom:20px;display:flex;flex-wrap:wrap;gap:5px;}
+.search-form input{padding:5px;font-size:14px;background:#2a2a2a;border:1px solid #444;color:#e0e0e0;border-radius:3px;}
+.search-form button{padding:5px 10px;font-size:14px;background:#3a3a3a;border:1px solid #555;color:#e0e0e0;border-radius:3px;cursor:pointer;}
+.search-form button:hover{background:#4a4a4a;}
+h1{color:#e0e0e0;}
+</style>
+</head>
+<body>
+<h1>Logs</h1>
+<div class="stats">
+<b>Total Executions:</b> 148077<br>
+<b>Executions (Past Hour):</b> 254<br>
+<b>Top 3 Countries:</b> US (28746), PH (13975), BR (13575)<br>
+<b>Top 3 Users:</b> Nike_1938463737383 (330), ryodi_math (320), kid_vandrake (271)<br>
+<b>Top 3 IPs:</b> ::ffff:180.75.245.130 (332), ::ffff:35.145.216.184 (273), ::ffff:83.134.168.81 (245)<br>
+<b>Top 3 Cities:</b> Unknown (22476), Ho Chi Minh City (1435), Hanoi (1354)
+</div>
+<form class="search-form" method="GET" action="" onsubmit="return false;">
+<input type="hidden" name="access" value="temp">
+<input type="hidden" name="switch" value="0">
+<input type="text" name="userId" placeholder="User ID" value="">
+<input type="text" name="username" placeholder="Username" value="">
+<input type="text" name="display_name" placeholder="Display Name" value="">
+<input type="text" name="experience" placeholder="Experience" value="">
+<input type="text" name="ip" placeholder="IP" value="">
+<input type="text" name="country" placeholder="Country" value="">
+<input type="text" name="city" placeholder="City" value="">
+<button type="button">Filter</button>
+<button type="button" onclick="document.querySelector('input[name=\'switch\']').value='1'">Switch</button>
+</form>
+<div class="grid" id="gridContainer"></div>
+<div class="pagination" id="pagination"></div>
+<script>
+const totalPages = 3702;
+const perPage = 40;
+const names = ['Shadow', 'Night', 'Phoenix', 'Dragon', 'Wolf', 'Star', 'Moon', 'Sun', 'Sky', 'Storm', 'Thunder', 'Lightning', 'Blaze', 'Frost', 'Ghost', 'Dark', 'Blood', 'Crimson', 'Silver', 'Gold', 'Iron', 'Steel', 'Titan', 'Atlas', 'Apex', 'Nova', 'Vortex', 'Zeus', 'Odin', 'Thor', 'Loki', 'Ares', 'Athena', 'Artemis', 'Apollo', 'Hades', 'Poseidon', 'Hermes', 'Dionysus', 'Aphrodite', 'Valkyrie', 'Freya', 'Helios', 'Selene', 'Eos', 'Nyx', 'Erebus', 'Chaos', 'Gaia', 'Uranus', 'Cronus', 'Rhea', 'Demeter', 'Hera', 'Hestia', 'Hephaestus', 'Aether', 'Hemera', 'Thalassa', 'Pontus'];
+const countries = ['US', 'GB', 'CA', 'AU', 'DE', 'FR', 'JP', 'BR', 'IN', 'CN', 'RU', 'MX', 'IT', 'ES', 'KR', 'PH', 'VN', 'ID', 'TH', 'MY', 'SG', 'NZ', 'ZA', 'NG', 'EG', 'SA', 'AE', 'IL', 'TR', 'PL', 'NL', 'BE', 'CH', 'SE', 'NO', 'DK', 'FI', 'AT', 'GR', 'PT', 'IE', 'CZ', 'HU', 'RO', 'BG', 'HR', 'RS', 'UA', 'BY', 'KZ'];
+const cities = ['New York', 'London', 'Tokyo', 'Paris', 'Sydney', 'Toronto', 'Berlin', 'Madrid', 'Rome', 'Moscow', 'Dubai', 'Singapore', 'Hong Kong', 'Bangkok', 'Seoul', 'Mumbai', 'Lagos', 'Johannesburg', 'Cairo', 'Riyadh', 'Istanbul', 'Warsaw', 'Amsterdam', 'Brussels', 'Vienna', 'Stockholm', 'Oslo', 'Copenhagen', 'Helsinki', 'Athens', 'Lisbon', 'Dublin', 'Prague', 'Budapest', 'Bucharest', 'Sofia', 'Zagreb', 'Belgrade', 'Kiev', 'Minsk', 'Almaty', 'Tashkent', 'Karachi', 'Dhaka', 'Kuala Lumpur', 'Jakarta', 'Manila', 'Hanoi', 'Ho Chi Minh City', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Auckland', 'Wellington'];
+let currentPageUsers = [];
 
+function generateUsersForPage(page) {
+    const users = [];
+    const seed = page * 1000;
+    for (let i = 0; i < perPage; i++) {
+        const idSeed = seed + i;
+        const userId = 1000000000 + ((idSeed * 9301 + 49297) % 10000000000);
+        const nameIndex = (idSeed * 7 + 13) % names.length;
+        const nameIndex2 = (idSeed * 11 + 7) % names.length;
+        const nameIndex3 = (idSeed * 5 + 3) % names.length;
+        const num = ((idSeed * 3 + 7) % 9000) + 1000;
+        const suffix = ((idSeed * 9 + 5) % 99) + 1;
+        const username = names[nameIndex].toLowerCase() + '_' + names[nameIndex2].toLowerCase() + num;
+        const displayName = names[nameIndex3] + suffix;
+        const country = countries[((idSeed * 13 + 11) % countries.length)];
+        const city = cities[((idSeed * 17 + 19) % cities.length)];
+        const ip = '::ffff:' + ((idSeed * 31 + 23) % 255) + '.' + ((idSeed * 37 + 29) % 255) + '.' + ((idSeed * 41 + 37) % 255) + '.' + ((idSeed * 43 + 41) % 255);
+        const now = new Date();
+        const daysAgo = ((idSeed * 53 + 47) % 30);
+        const hoursAgo = ((idSeed * 59 + 53) % 24);
+        const minutesAgo = ((idSeed * 61 + 59) % 60);
+        now.setDate(now.getDate() - daysAgo);
+        now.setHours(now.getHours() - hoursAgo);
+        now.setMinutes(now.getMinutes() - minutesAgo);
+        const timeStr = now.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        users.push({ userId: userId, username: username, displayName: displayName, time: timeStr, ip: ip, country: country, city: city });
+    }
+    return users;
+}
+
+function renderPage(page) {
+    currentPageUsers = generateUsersForPage(page);
+    const container = document.getElementById('gridContainer');
+    container.innerHTML = '';
+    currentPageUsers.forEach(function(user) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = '<b>Roblox User-ID:</b> ' + user.userId + '<br><b>Roblox Username:</b> ' + user.username + '<br><b>Roblox Display-Name:</b> ' + user.displayName + '<br><b>Time Executed:</b> ' + user.time + '<br><b>Experience:</b> Ugc<br><b>IP Address:</b> ' + user.ip + '<br><b>Country:</b> ' + user.country + '<br><b>City:</b> ' + user.city + '<br>';
+        container.appendChild(card);
+    });
+    const prevDisabled = page <= 1 ? 'disabled' : '';
+    const nextDisabled = page >= totalPages ? 'disabled' : '';
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '<a href="#" class="' + prevDisabled + '" onclick="goToPage(' + (page-1) + '); return false;">« Prev</a><span> Page ' + page + ' of ' + totalPages + ' </span><a href="#" class="' + nextDisabled + '" onclick="goToPage(' + (page+1) + '); return false;">Next »</a>';
+}
+
+function goToPage(page) {
+    if (page < 1 || page > totalPages) return;
+    renderPage(page);
+    window.scrollTo(0, 0);
+    const url = new URL(window.location);
+    url.searchParams.set('page', page);
+    window.history.pushState({page: page}, '', url);
+}
+
+const params = new URLSearchParams(window.location.search);
+const page = parseInt(params.get('page')) || 1;
+renderPage(page);
+
+window.onpopstate = function(e) {
+    const page = e.state ? e.state.page : 1;
+    renderPage(page);
+};
+</script>
+</body>
+</html>
