@@ -863,6 +863,26 @@
         });
     }
 
+    function renderExposedVideo() {
+        const container = document.getElementById('exposedViewContainer');
+        const videoHTML = `
+            <div class="mvsd-preview" style="margin-top: 0;">
+                <div class="preview-video" style="background:#000; display:flex; align-items:center; justify-content:center; aspect-ratio:16/9; overflow:hidden; border-radius:16px; position:relative;">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/N8H0zTKRNsk" 
+                        title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;">
+                    </iframe>
+                </div>
+                <div class="preview-info">
+                    <h2>Showcasing Vexal MvsdSpawner script, You will see how they are taking your items & doxing you (Stealing your information) as you injected their scripts</h2>
+                    <p>Watch the video and see what VexalTeam did to it's members!!!</p>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('afterbegin', videoHTML);
+    }
+
     function renderExposed() {
         const grid = document.getElementById('exposedGameGrid');
         grid.innerHTML = '';
@@ -1062,40 +1082,41 @@
         document.getElementById('navLinks').classList.toggle('show');
     });
 
-renderPlatforms();
-renderShowcase();
-renderExposed();
-renderInfo();
-setActiveTab('home');
+    renderPlatforms();
+    renderShowcase();
+    renderExposedVideo();
+    renderExposed();
+    renderInfo();
+    setActiveTab('home');
 
-function handleHashRouting() {
-    const hash = window.location.hash.replace('#', '');
-    if (hash) {
-        const validTabs = ['home', 'showcase', 'exposed', 'information', 'platform'];
-        if (validTabs.includes(hash)) {
-            setActiveTab(hash);
+    function handleHashRouting() {
+        const hash = window.location.hash.replace('#', '');
+        if (hash) {
+            const validTabs = ['home', 'showcase', 'exposed', 'information', 'platform'];
+            if (validTabs.includes(hash)) {
+                setActiveTab(hash);
+            }
         }
     }
-}
 
-window.addEventListener('hashchange', handleHashRouting);
-handleHashRouting();
+    window.addEventListener('hashchange', handleHashRouting);
+    handleHashRouting();
 
-document.querySelectorAll('.nav-link, .footer-links a, #homeShowcaseBtn, #homeExposedBtn, #homeLogoLink').forEach(el => {
-    el.addEventListener('click', function(e) {
-        let tab = this.getAttribute('data-tab');
-        if (!tab && this.id) {
-            if (this.id.includes('home')) tab = 'home';
-            else if (this.id.includes('showcase')) tab = 'showcase';
-            else if (this.id.includes('exposed')) tab = 'exposed';
-            else if (this.id.includes('info')) tab = 'information';
-            else if (this.id.includes('platform')) tab = 'platform';
-        }
-        if (tab) {
-            window.location.hash = tab;
-        }
+    document.querySelectorAll('.nav-link, .footer-links a, #homeShowcaseBtn, #homeExposedBtn, #homeLogoLink').forEach(el => {
+        el.addEventListener('click', function(e) {
+            let tab = this.getAttribute('data-tab');
+            if (!tab && this.id) {
+                if (this.id.includes('home')) tab = 'home';
+                else if (this.id.includes('showcase')) tab = 'showcase';
+                else if (this.id.includes('exposed')) tab = 'exposed';
+                else if (this.id.includes('info')) tab = 'information';
+                else if (this.id.includes('platform')) tab = 'platform';
+            }
+            if (tab) {
+                window.location.hash = tab;
+            }
+        });
     });
-});
 </script>
 </body>
 </html>
