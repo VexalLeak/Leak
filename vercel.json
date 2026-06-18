@@ -24,6 +24,14 @@
     {
       "src": "/platform",
       "dest": "/index.html"
+    },
+    {
+      "src": "/api/members",
+      "dest": "/api/members.js"
+    },
+    {
+      "src": "/api/vexal",
+      "dest": "/api/vexal.js"
     }
   ]
 }
