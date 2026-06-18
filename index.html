@@ -928,7 +928,7 @@
     let previewUrl = url;
     if (url === '/api/members' || url === '/api/vexal') {
         previewUrl = url;
-    } else if (url.includes('raw.githubusercontent.com') && url.endsWith('.html')) {
+    } else {
         previewUrl = `https://raw.githack.com/${url.replace('https://raw.githubusercontent.com/', '').replace('/refs/heads/main/', '/main/')}`;
     }
     const overlay = document.createElement('div');
