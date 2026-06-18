@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/home",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/showcase",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/exposed",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/information",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/platform",
+      "dest": "/index.html"
+    }
+  ]
+}
