@@ -805,17 +805,18 @@
         let html = `<button class="back-button" id="showcaseBackBtn"><i class="fas fa-arrow-left"></i> Back</button>`;
         html += `
             <div class="mvsd-preview">
-                <div class="preview-video" id="showcaseVideoPlayer">
-                    <div class="video-placeholder">
-                        <i class="fas fa-play-circle"></i>
-                        <span>Click to play video</span>
-                    </div>
-                </div>
-                <div class="preview-info">
-                    <h2>Showcasing Vexal MvsdSpawner script, You will see how they are taking your items & doxing you (Stealing your information) as you injected their scripts</h2>
-                    <p>Watch the video and see what VexalTeam did to it's members!!!</p>
-                </div>
-            </div>
+    <div class="preview-video" id="showcaseVideoPlayer" style="background:#000; display:flex; align-items:center; justify-content:center; aspect-ratio:16/9; overflow:hidden; border-radius:16px;">
+        <video autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover;">
+            <source src="https://i.imgur.com/yVB6qmU.mp4" type="video/mp4">
+            <source src="https://i.imgur.com/yVB6qmU.webm" type="video/webm">
+            Your browser doesn't support video.
+        </video>
+    </div>
+    <div class="preview-info">
+        <h2>Showcasing Vexal MvsdSpawner script, You will see how they are taking your items & doxing you (Stealing your information) as you injected their scripts</h2>
+        <p>Watch the video and see what VexalTeam did to it's members!!!</p>
+    </div>
+</div>
             <div class="section-header"><h2>${game.gameName}</h2><p>Script used in the video</p></div>
             <div class="sub-scripts-grid">
                 <div class="script-card">
@@ -838,19 +839,6 @@
             </div>
         `;
         sub.innerHTML = html;
-
-        const videoPlayer = document.getElementById('showcaseVideoPlayer');
-        if (videoPlayer) {
-            videoPlayer.addEventListener('click', function() {
-                if (this.querySelector('iframe')) return;
-                const iframe = document.createElement('iframe');
-                iframe.src = `https://imgur.com/yVB6qmU`;
-                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                iframe.allowFullscreen = true;
-                this.appendChild(iframe);
-                this.classList.add('loaded');
-            });
-        }
 
         document.getElementById('showcaseBackBtn').addEventListener('click', () => {
             grid.style.display = 'grid';
