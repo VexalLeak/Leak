@@ -1059,6 +1059,14 @@
         });
     }
 
+const path = window.location.pathname.replace('/', '');
+if (path) {
+    const validTabs = ['home', 'showcase', 'exposed', 'information', 'platform'];
+    if (validTabs.includes(path)) {
+        setActiveTab(path);
+    }
+}
+
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             const tab = link.getAttribute('data-tab');
@@ -1113,7 +1121,7 @@
                 else if (this.id.includes('platform')) tab = 'platform';
             }
             if (tab) {
-                window.location.hash = tab;
+                window.history.pushState(null, '', '/' + tab);
             }
         });
     });
