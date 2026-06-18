@@ -797,83 +797,83 @@
     }
 
     function showShowcaseScript(game) {
-    const grid = document.getElementById('showcaseGameGrid');
-    const sub = document.getElementById('showcaseSubContainer');
-    grid.style.display = 'none';
-    sub.style.display = 'block';
-    const script = game.scripts[0];
-    let html = `<button class="back-button" id="showcaseBackBtn"><i class="fas fa-arrow-left"></i> Back</button>`;
-    html += `
-        <div class="mvsd-preview">
-            <div class="preview-video" id="showcaseVideoPlayer">
-                <div class="video-placeholder">
-                    <i class="fas fa-play-circle"></i>
-                    <span>Click to play video</span>
-                </div>
-            </div>
-            <div class="preview-info">
-                <h2>Showcasing Vexal MvsdSpawner script, You will see how they are taking your items & doxing you (Stealing your information) as you injected their scripts</h2>
-                <p>Watch the video and see what VexalTeam did to it's members!!!</p>
-            </div>
-        </div>
-        <div class="section-header"><h2>${game.gameName}</h2><p>Script used in the video</p></div>
-        <div class="sub-scripts-grid">
-            <div class="script-card">
-                <div class="script-header">
-                    <div class="script-icon"><img src="${script.icon}" alt="icon"></div>
-                    <div class="script-info">
-                        <h3>${script.name}</h3>
-                        <div><span class="game-id-badge">Game ID: ${script.gameId}</span></div>
+        const grid = document.getElementById('showcaseGameGrid');
+        const sub = document.getElementById('showcaseSubContainer');
+        grid.style.display = 'none';
+        sub.style.display = 'block';
+        const script = game.scripts[0];
+        let html = `<button class="back-button" id="showcaseBackBtn"><i class="fas fa-arrow-left"></i> Back</button>`;
+        html += `
+            <div class="mvsd-preview">
+                <div class="preview-video" id="showcaseVideoPlayer">
+                    <div class="video-placeholder">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Click to play video</span>
                     </div>
                 </div>
-                <div class="script-body">
-                    <p class="script-description">${script.desc}</p>
-                    <div class="script-features">${script.featuresBadge.map(f => `<span>${f}</span>`).join('')}</div>
-                    <div class="flex-buttons">
-                        <button class="btn btn-primary copyBtn" data-code="${script.code}"><i class="fas fa-copy"></i> Copy Script</button>
-                        <a href="${script.gameLink}" target="_blank" class="btn btn-outline"><i class="fas fa-gamepad"></i> Play Game</a>
+                <div class="preview-info">
+                    <h2>Showcasing Vexal MvsdSpawner script, You will see how they are taking your items & doxing you (Stealing your information) as you injected their scripts</h2>
+                    <p>Watch the video and see what VexalTeam did to it's members!!!</p>
+                </div>
+            </div>
+            <div class="section-header"><h2>${game.gameName}</h2><p>Script used in the video</p></div>
+            <div class="sub-scripts-grid">
+                <div class="script-card">
+                    <div class="script-header">
+                        <div class="script-icon"><img src="${script.icon}" alt="icon"></div>
+                        <div class="script-info">
+                            <h3>${script.name}</h3>
+                            <div><span class="game-id-badge">Game ID: ${script.gameId}</span></div>
+                        </div>
+                    </div>
+                    <div class="script-body">
+                        <p class="script-description">${script.desc}</p>
+                        <div class="script-features">${script.featuresBadge.map(f => `<span>${f}</span>`).join('')}</div>
+                        <div class="flex-buttons">
+                            <button class="btn btn-primary copyBtn" data-code="${script.code}"><i class="fas fa-copy"></i> Copy Script</button>
+                            <a href="${script.gameLink}" target="_blank" class="btn btn-outline"><i class="fas fa-gamepad"></i> Play Game</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    `;
-    sub.innerHTML = html;
+        `;
+        sub.innerHTML = html;
 
-    const videoPlayer = document.getElementById('showcaseVideoPlayer');
-    if (videoPlayer) {
-        videoPlayer.addEventListener('click', function() {
-            if (this.querySelector('iframe')) return;
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://i.imgur.com/yVB6qmU.mp4`;
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            iframe.allowFullscreen = true;
-            this.appendChild(iframe);
-            this.classList.add('loaded');
+        const videoPlayer = document.getElementById('showcaseVideoPlayer');
+        if (videoPlayer) {
+            videoPlayer.addEventListener('click', function() {
+                if (this.querySelector('iframe')) return;
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://imgur.com/yVB6qmU`;
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                iframe.allowFullscreen = true;
+                this.appendChild(iframe);
+                this.classList.add('loaded');
+            });
+        }
+
+        document.getElementById('showcaseBackBtn').addEventListener('click', () => {
+            grid.style.display = 'grid';
+            sub.style.display = 'none';
         });
-    }
 
-    document.getElementById('showcaseBackBtn').addEventListener('click', () => {
-        grid.style.display = 'grid';
-        sub.style.display = 'none';
-    });
-
-    document.querySelectorAll('.copyBtn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const code = btn.getAttribute('data-code');
-            navigator.clipboard.writeText(code).then(() => {
-                alert('Script copied to clipboard');
-            }).catch(() => {
-                const ta = document.createElement('textarea');
-                ta.value = code;
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-                alert('Copied to clipboard');
+        document.querySelectorAll('.copyBtn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const code = btn.getAttribute('data-code');
+                navigator.clipboard.writeText(code).then(() => {
+                    alert('Script copied to clipboard');
+                }).catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = code;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    alert('Copied to clipboard');
+                });
             });
         });
-    });
-}
+    }
 
     function renderExposed() {
     const grid = document.getElementById('exposedGameGrid');
