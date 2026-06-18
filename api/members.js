@@ -21,14 +21,12 @@ module.exports = async (req, res) => {
   <meta name="robots" content="noindex, nofollow">
   <meta name="color-scheme" content="dark">
   <title>VexalBackend</title>
-  
   <meta property="og:title" content="VexalBackend">
   <meta property="og:description" content="file not accessible">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.vexaltragedy.xyz/">
   <meta name="theme-color" content="#000000">
   <link rel="icon" href="https://i.imgur.com/f1fp0Vj.png">
-
   <style>
     :root {
       --bg-primary: #0a0a0a;
@@ -38,13 +36,11 @@ module.exports = async (req, res) => {
       --text-secondary: #888888;
       --accent: #ffffff;
     }
-    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg-primary);
@@ -55,12 +51,10 @@ module.exports = async (req, res) => {
       justify-content: center;
       padding: 20px;
     }
-    
     .container {
       width: 100%;
       max-width: 500px;
     }
-    
     .card {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
@@ -69,28 +63,23 @@ module.exports = async (req, res) => {
       text-align: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
-    
     .card-header {
       margin-bottom: 25px;
     }
-    
     .logo-container {
       margin-bottom: 20px;
     }
-    
     .logo-container img {
       width: 60px;
       height: 60px;
       border-radius: 8px;
     }
-    
     h1 {
       font-size: 28px;
       font-weight: 600;
       color: var(--text-primary);
       margin: 0;
     }
-    
     .message {
       background: var(--bg-primary);
       border: 1px solid var(--border);
@@ -98,19 +87,16 @@ module.exports = async (req, res) => {
       padding: 20px;
       margin: 25px 0;
     }
-    
     .message p {
       color: var(--text-secondary);
       font-size: 16px;
       margin: 0;
     }
-    
     .button-group {
       display: flex;
       gap: 15px;
       margin-top: 30px;
     }
-    
     .btn {
       flex: 1;
       padding: 14px 20px;
@@ -129,40 +115,32 @@ module.exports = async (req, res) => {
       justify-content: center;
       gap: 8px;
     }
-    
     .btn:hover {
       background: var(--border);
     }
-    
     .btn-primary {
       background: var(--accent);
       color: var(--bg-primary);
       border-color: var(--accent);
     }
-    
     .btn-primary:hover {
       background: #e6e6e6;
       border-color: #e6e6e6;
     }
-    
     .btn svg {
       width: 16px;
       height: 16px;
     }
-    
     @media (max-width: 640px) {
       .card {
         padding: 30px 20px;
       }
-      
       h1 {
         font-size: 24px;
       }
-      
       .button-group {
         flex-direction: column;
       }
-      
       .btn {
         width: 100%;
       }
@@ -174,15 +152,13 @@ module.exports = async (req, res) => {
     <div class="card">
       <div class="card-header">
         <div class="logo-container">
-          <img src="https://i.imgur.com/f1fp0Vj.png" alt="Project Vapor">
+          <img src="https://i.imgur.com/f1fp0Vj.png" alt="Vexal">
         </div>
         <h1>VexalBackend</h1>
       </div>
-      
       <div class="message">
         <p>Raw file not found</p>
       </div>
-      
       <div class="button-group">
         <a href="https://www.vexaltragedy.xyz/" class="btn btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -191,7 +167,6 @@ module.exports = async (req, res) => {
           </svg>
           Back to Site
         </a>
-        
         <button class="btn" id="goBack">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" d="M9.53 2.47a.75.75 0 010 1.06L4.81 8.25H15a6.75 6.75 0 010 13.5h-3a.75.75 0 010-1.5h3a5.25 5.25 0 100-10.5H4.81l4.72 4.72a.75.75 0 11-1.06 1.06l-6-6a.75.75 0 010-1.06l6-6a.75.75 0 011.06 0z" clip-rule="evenodd" />
@@ -201,11 +176,9 @@ module.exports = async (req, res) => {
       </div>
     </div>
   </div>
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const goBackBtn = document.getElementById('goBack');
-      
       goBackBtn.addEventListener('click', function() {
         if (window.history.length > 1) {
           window.history.back();
