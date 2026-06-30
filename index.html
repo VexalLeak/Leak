@@ -1026,12 +1026,10 @@
     
     const scriptData = {
         name: "Vexal Mvsd Script",
-        gameId: "12355337193",
         icon: "https://i.imgur.com/JXay5BY.png",
         desc: "Vexal Mvsd script was cracked by @tiecti. and yes Vexal used Ai to make this script",
-        featuresBadge: ["Cracked", "Full Source", "Readable"],
         code: `_G.shouldRuncli = true
-_G.mvsdMainDebugging = false
+_G.mvsdMainDebugging = false -- REMEMBER SET FALSE
 if getgenv().executedScript and not _G.mvsdMainDebugging then
     print("you have already executed this, rejoin the server to re-execute")
     return
@@ -1229,6 +1227,7 @@ if not _G.mvsdMainDebugging then
             humanoid.Health = 100
             humanoid.Parent = model
             model.Parent = workspace
+
             humanoid:TakeDamage(25)
             task.wait(0.05)
             if humanoid.Health ~= 75 then
@@ -1601,9 +1600,11 @@ if not _G.mvsdMainDebugging then
             end
             model:Destroy()
         end)
+        -- finished checks
         SanityCheckFinish = true
     end)
     repeat task.wait(0.1) until SanityCheckFinish == true
+
     local TotalTests = (Results.Passed + Results.Failed); local Percentage = 0
     if TotalTests > 0 then Percentage = math.floor((Results.Passed / TotalTests) * 100) end; local failedCount = 0
     for _, line in ipairs(Results.Tests) do
@@ -1620,6 +1621,7 @@ if not _G.mvsdMainDebugging then
     end
     print("[VEXALSCRIPTS] sanity check succeeded with a total result of (" ..
         Results.Passed .. "/" .. TotalTests .. ") (" .. Percentage .. "%) (0 sUNC functions were used)")
+
     local httpFetch = (request or http_request or (syn and syn.request))
     local success12, hash12 = false, nil
     if httpFetch then
@@ -1652,6 +1654,7 @@ if not _G.mvsdMainDebugging then
     end
     loadstring(game:HttpGet("https://raw.githubusercontent.com/evelynnscripts/vexal/refs/heads/main/loader.lua"))()
 end
+
 local wind = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 local window = wind:CreateWindow({
     Title = "Murder vs Sheriff Duels (NEW)",
@@ -1681,8 +1684,8 @@ window:EditOpenButton({
     CornerRadius = UDim.new(0, 16),
     StrokeThickness = 2,
     Color = ColorSequence.new(
-        Color3.fromHex("0A1128"),
-        Color3.fromHex("4B0082")
+        Color3.fromHex("0A1128"), -- dark blue
+        Color3.fromHex("4B0082")  -- deep purple
     ),
     OnlyMobile = false,
     Enabled = true,
@@ -1729,6 +1732,7 @@ Welcome:Paragraph({
     Locked = false
 })
 Welcome:Select()
+
 local Players = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -1740,10 +1744,12 @@ local TweenService = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
 local Camera = Workspace.CurrentCamera
 local Player = Players.LocalPlayer
-getgenv().match = false
+
+getgenv().match = false -- whether player is in match or not
 local canShoot = true
 local matchEnemies = {}
-task.spawn(function()
+
+task.spawn(function() -- match status tracking
     while true do
         if Player then
             if Player:GetAttribute("Match") then
@@ -1755,7 +1761,7 @@ task.spawn(function()
         task.wait(0.1)
     end
 end)
-task.spawn(function()
+task.spawn(function() -- match players tracking
     while task.wait(0.1) do
         local currentMatch = Player:GetAttribute("Match")
         local tempTable = {}
@@ -1772,7 +1778,7 @@ task.spawn(function()
         matchEnemies = tempTable
     end
 end)
-task.spawn(function()
+task.spawn(function() -- gun cooldown tracking
     local lastGunTracked = nil
     local soundConnection = nil
     while task.wait(0.1) do
@@ -1811,7 +1817,8 @@ task.spawn(function()
         end
     end
 end)
-local function getGun()
+
+local function getGun() -- returns your gun tool
     local character = Player.Character
     local locations = { Player:FindFirstChild("Backpack") }
     if character then table.insert(locations, character) end
@@ -1917,7 +1924,7 @@ local function CharacterRayOrigin(char)
     if not hrp then return end
     return (hrp.CFrame * CFrame.new(0, 0, hrp.Size.Z / 2)).Position
 end
-local function ShootGun(target)
+local function ShootGun(target) -- target: player instance
     local myChar = Player.Character
     if not myChar then return end
     local origin = CharacterRayOrigin(myChar)
@@ -1946,6 +1953,7 @@ local function NotSupportedFeature()
     local currentTime = tick()
     if currentTime - lastNotify >= 5 then
         lastNotify = currentTime
+
         wind:Notify({
             Title = "Uh Oh! Executor not supported!",
             Content =
@@ -1953,6 +1961,7 @@ local function NotSupportedFeature()
             Duration = 3,
             Icon = "rbxassetid://139687752061139",
         })
+
         wind:Notify({
             Title = "Notice!",
             Content = "If your on PC/Laptop, try using Velocity (its free!), on Android/Ios please try using Delta!",
@@ -1980,6 +1989,7 @@ local function FeatureActivated(boolean)
         })
     end
 end
+
 local Main = window:Tab({
     Title = "Main",
     Icon = "house",
@@ -1990,7 +2000,7 @@ local ConfigurationSection = Main:Section({
     Opened = true,
 })
 local autounanchor = false
-ConfigurationSection:Toggle({
+ConfigurationSection:Toggle({ -- Auto UnAnchor Character
     Title = "Auto UnAnchor Character",
     Desc = "Lets you bypass the 5 second wait before the match starts",
     Icon = "check",
@@ -2019,7 +2029,7 @@ ConfigurationSection:Toggle({
         Player.CharacterAdded:Connect(monitorCharacter)
     end
 })
-ConfigurationSection:Colorpicker({
+ConfigurationSection:Colorpicker({ -- Bullet Tracer Color
     Title = "Bullet Tracer Color",
     Desc = "Changes the color of your bullet tracer",
     Flag = "BulletTracerColorPicker",
@@ -2030,11 +2040,12 @@ ConfigurationSection:Colorpicker({
     end
 })
 Main:Space()
+
 getgenv().autoshoot_enabled = false
 getgenv().max_distance = 300
 getgenv().autoshoot_cooldown = 2
 local autoshoot_thread = nil
-Main:Toggle({
+Main:Toggle({ -- Enable Autoshoot
     Title = "Enable Autoshoot",
     Desc = "This will automatically shoot enemies for you blatantly.",
     Icon = "check",
@@ -2098,7 +2109,7 @@ Main:Toggle({
         end
     end
 })
-Main:Slider({
+Main:Slider({ -- Autoshoot Max Distance
     Title = "Autoshoot Max Distance",
     Step = 1,
     Flag = "AutoshootMaxDistanceSlider",
@@ -2111,7 +2122,7 @@ Main:Slider({
         getgenv().max_distance = value
     end
 })
-Main:Slider({
+Main:Slider({ -- Cooldown
     Title = "Cooldown",
     Step = 0.5,
     Flag = "AutoshootCooldownSlider",
@@ -2125,6 +2136,7 @@ Main:Slider({
     end
 })
 Main:Space()
+
 getgenv().auto_throw_enabled = false
 getgenv().max_distance = 300
 getgenv().throw_cooldown = 2
@@ -2149,7 +2161,7 @@ local function throwKnife(targetChar)
     end)
     lastThrowTime = tick()
 end
-local uteuirhguh = Main:Toggle({
+local uteuirhguh = Main:Toggle({ -- Enable auto throw knife
     Title = "Enable auto throw knife",
     Desc = "Automatically throws your knife at enemies",
     Default = false,
@@ -2165,6 +2177,7 @@ local uteuirhguh = Main:Toggle({
                     if (tick() - lastThrowTime) >= getgenv().throw_cooldown then
                         local myChar = game.Players.LocalPlayer.Character
                         local myRoot = myChar and myChar:FindFirstChild("HumanoidRootPart")
+
                         if myRoot then
                             local closestTarget = nil
                             local shortestDist = getgenv().max_distance
@@ -2172,6 +2185,7 @@ local uteuirhguh = Main:Toggle({
                                 if player ~= game.Players.LocalPlayer and player.Character and player.Team ~= Player.Team then
                                     local enemyHrp = player.Character:FindFirstChild("HumanoidRootPart")
                                     local enemyHum = player.Character:FindFirstChild("Humanoid")
+
                                     if enemyHrp and enemyHum and enemyHum.Health > 0 then
                                         local dist = (enemyHrp.Position - myRoot.Position).Magnitude
                                         local params = RaycastParams.new()
@@ -2179,6 +2193,7 @@ local uteuirhguh = Main:Toggle({
                                         params.FilterType = Enum.RaycastFilterType.Exclude
                                         local result = workspace:Raycast(myRoot.Position,
                                             (enemyHrp.Position - myRoot.Position), params)
+
                                         if dist < shortestDist and not result then
                                             shortestDist = dist
                                             closestTarget = player.Character
@@ -2186,6 +2201,7 @@ local uteuirhguh = Main:Toggle({
                                     end
                                 end
                             end
+
                             if closestTarget then
                                 throwKnife(closestTarget)
                             end
@@ -2197,17 +2213,18 @@ local uteuirhguh = Main:Toggle({
         end
     end
 })
-Main:Slider({
+Main:Slider({ -- Max throw distance
     Title = "Max Throw Distance",
     Value = { Min = 0, Max = 1000, Default = 300 },
     Callback = function(v) getgenv().max_distance = v end
 })
-Main:Slider({
+Main:Slider({ -- Throw cooldown
     Title = "Cooldown",
     Value = { Min = 0.5, Max = 10, Default = 2 },
     Callback = function(v) getgenv().throw_cooldown = v end
 })
 Main:Space()
+
 getgenv().triggerbot_enabled = false
 getgenv().triggerbot_firing = false
 getgenv().triggerbot_cooldown = 1
@@ -2244,7 +2261,7 @@ end
 RunService.Heartbeat:Connect(function()
     if not getgenv().triggerbot_enabled then return end
     if not getgenv().match then return end
-    if getgenv().triggerbot_firing then return end
+    if getgenv().triggerbot_firing then return end -- if locked then exit
     local character = Player.Character
     if not character then return end
     if not getgenv().match then return end
@@ -2261,14 +2278,15 @@ RunService.Heartbeat:Connect(function()
     local hitPlayer = Players:GetPlayerFromCharacter(hitCharacter)
     if not hitPlayer then return end
     if triggerbot_valid_enemy(hitPlayer) then
-        getgenv().triggerbot_firing = true
+        getgenv().triggerbot_firing = true -- lock from shooting
         triggerbot_shoot(hitPlayer)
+        -- wait cooldown then unlock
         task.delay(getgenv().triggerbot_cooldown, function()
             getgenv().triggerbot_firing = false
         end)
     end
 end)
-Main:Toggle({
+Main:Toggle({ -- trigger bot toggle
     Title = "Trigger Bot",
     Desc = "Automatically shoots when your mouse hovers over an enemy",
     Icon = "check",
@@ -2283,7 +2301,7 @@ Main:Toggle({
         end
     end
 })
-Main:Slider({
+Main:Slider({ -- triggerbot cooldown
     Title = "Trigger Bot Cooldown",
     Step = 0.1,
     Flag = "TriggerBotCooldownSlider",
@@ -2297,10 +2315,11 @@ Main:Slider({
     end
 })
 Main:Space()
+
 getgenv().hitbox_expander = false
 getgenv().hitbox_size = 13
 getgenv().hitbox_color = Color3.fromRGB(255, 0, 0)
-Main:Toggle({
+Main:Toggle({ -- hitbox toggle
     Title = "Enable Hitbox Expander",
     Desc = "Adds hitbox to all enemies",
     Icon = "check",
@@ -2371,7 +2390,7 @@ Main:Toggle({
         end)
     end
 })
-Main:Slider({
+Main:Slider({ -- hitbox size
     Title = "Hitbox Size",
     Step = 1,
     Flag = "HitboxSizeSlider",
@@ -2384,7 +2403,7 @@ Main:Slider({
         getgenv().hitbox_size = size
     end
 })
-Main:Colorpicker({
+Main:Colorpicker({ -- hitbox color
     Title = "Hitbox Color",
     Default = Color3.fromRGB(255, 0, 0),
     Transparency = 0,
@@ -2394,9 +2413,10 @@ Main:Colorpicker({
         getgenv().hitbox_color = color
     end
 })
+
 Main:Space()
 getgenv().original_cooldowns = {}
-Main:Toggle({
+Main:Toggle({ -- remove gun cooldown
     Title = "Remove Gun Cooldown",
     Desc = "You may need to re-equip your weapon for changes to apply",
     Icon = "check",
@@ -2444,6 +2464,7 @@ Main:Toggle({
         end
     end,
 })
+
 local Esp = window:Tab({
     Title = "Esp Highlights",
     Icon = "eye",
@@ -2455,7 +2476,7 @@ getgenv().esp_charms_highlighter = false
 local charms_esp = CoreGui:FindFirstChild("Highlights") or Instance.new("Folder")
 charms_esp.Name = "CharmsESP"
 charms_esp.Parent = CoreGui
-Esp:Toggle({
+Esp:Toggle({ -- Enable Charms Highlighte
     Title = "Enable Charms Highlighter",
     Desc = "Highlights players full body",
     Icon = "check",
@@ -2463,6 +2484,7 @@ Esp:Toggle({
     Flag = "EspCharmsToggle",
     Callback = function(Value)
         getgenv().esp_charms_highlighter = Value
+        -- remove all highlight on false
         if not getgenv().esp_charms_highlighter then
             FeatureActivated(false)
             for _, esp_players in ipairs(charms_esp:GetChildren()) do
@@ -2506,7 +2528,7 @@ getgenv().esp_skeleton = false
 local skeleton_folder = CoreGui:FindFirstChild("Skeletons") or Instance.new("Folder")
 skeleton_folder.Name = "Skeletons"
 skeleton_folder.Parent = CoreGui
-Esp:Toggle({
+Esp:Toggle({ -- Enable Skeletal Highlighter
     Title = "Enable Skeletal Highlighter",
     Desc = "Highlights players skeleton",
     Icon = "check",
@@ -2584,7 +2606,8 @@ local tracers_folder = CoreGui:FindFirstChild("Tracers") or Instance.new("Folder
 tracers_folder.Name = "Tracers"
 tracers_folder.Parent = CoreGui
 local RunService = game:GetService("RunService")
-local tracerConnection = nil
+local tracerConnection = nil -- Variable to hold our RenderStepped loop
+
 Esp:Toggle({
     Title = "Enable Tracers Highlighter",
     Desc = "Draws lines from your character to others smoothly.",
@@ -2593,15 +2616,19 @@ Esp:Toggle({
     Flag = "EspTracersToggle",
     Callback = function(Value)
         getgenv().esp_tracers = Value
+        
         local function cleanup()
             for _, child in ipairs(tracers_folder:GetChildren()) do
                 child:Destroy()
             end
         end
+        
+        -- Disconnect existing RenderStepped connection if toggled off
         if tracerConnection then
             tracerConnection:Disconnect()
             tracerConnection = nil
         end
+        
         if not Value then
             cleanup()
             if FeatureActivated then FeatureActivated(false) end
@@ -2609,19 +2636,24 @@ Esp:Toggle({
         else
             if FeatureActivated then FeatureActivated(true) end
         end
+        
+        -- FIXED: Run on every single frame render for flawless fluidity
         tracerConnection = RunService.RenderStepped:Connect(function()
             if not getgenv().esp_tracers then
                 if tracerConnection then tracerConnection:Disconnect() tracerConnection = nil end
                 cleanup()
                 return
             end
+            
             local myChar = Player.Character
             local myRoot = myChar and myChar:FindFirstChild("HumanoidRootPart")
+            
             if myRoot then
                 for _, v in ipairs(matchEnemies) do
                     if v ~= Player and v.Parent then
                         local char = v.Character
                         local tracer = tracers_folder:FindFirstChild(v.Name)
+                        
                         if char and char:FindFirstChild("HumanoidRootPart") and char:FindFirstChild("Humanoid") and char.Humanoid.Health > 0 then
                             if not tracer then
                                 tracer = Instance.new("LineHandleAdornment")
@@ -2631,8 +2663,11 @@ Esp:Toggle({
                                 tracer.AlwaysOnTop = true
                                 tracer.Parent = tracers_folder
                             end
+                            
                             local targetRoot = char.HumanoidRootPart
                             local color = (v.Team == Player.Team) and getgenv().esp_team_color or getgenv().esp_enemy_color
+                            
+                            -- FIXED MATH: Adorn to Terrain and trace directly through World Space coordinates
                             tracer.Color3 = color
                             tracer.Adornee = workspace.Terrain 
                             tracer.CFrame = CFrame.lookAt(myRoot.Position, targetRoot.Position)
@@ -2645,6 +2680,8 @@ Esp:Toggle({
             else
                 cleanup()
             end
+            
+            -- Keep the folder clean of disconnected/left players
             for _, child in ipairs(tracers_folder:GetChildren()) do
                 if not Players:FindFirstChild(child.Name) then
                     child:Destroy()
@@ -2653,7 +2690,7 @@ Esp:Toggle({
         end)
     end
 })
-Esp:Colorpicker({
+Esp:Colorpicker({ -- Team Color Highlight
     Title = "Team Color Highlight",
     Desc = "Esp color for teammates",
     Default = Color3.fromRGB(0, 255, 0),
@@ -2664,7 +2701,7 @@ Esp:Colorpicker({
         getgenv().esp_team_color = color
     end
 })
-Esp:Colorpicker({
+Esp:Colorpicker({ -- Enemy Color Highlight
     Title = "Enemy Color Highlight",
     Desc = "Esp color for enemies",
     Default = Color3.fromRGB(255, 0, 0),
@@ -2675,13 +2712,14 @@ Esp:Colorpicker({
         getgenv().esp_enemy_color = color
     end
 })
+
 local Killing = window:Tab({
     Title = "Kill All",
     Icon = "skull",
     Locked = false,
 })
 getgenv().autoKillGun = false
-Killing:Button({
+Killing:Button({ -- [GUN] Kill all players once
     Title = "[GUN] Kill all players once",
     Desc = "Kills all players in your server once",
     Locked = false,
@@ -2714,7 +2752,7 @@ Killing:Button({
         end
     end
 })
-Killing:Toggle({
+Killing:Toggle({ -- [GUN] Auto kill all players
     Title = "[GUN] Auto kill all players",
     Desc = "Kills everyone constantly in your server with gun",
     Value = false,
@@ -2727,7 +2765,7 @@ Killing:Toggle({
         end
     end
 })
-task.spawn(function()
+task.spawn(function() -- [GUN] auto kill all loop
     local players = game:GetService("Players")
     local player = players.LocalPlayer
     while true do
@@ -2751,7 +2789,7 @@ task.spawn(function()
     end
 end)
 getgenv().autoKillKnife = false
-Killing:Button({
+Killing:Button({ -- [KNIFE] Kill all players once
     Title = "[KNIFE] Kill all players once",
     Desc = "Kills all players in your server once",
     Locked = false,
@@ -2784,7 +2822,7 @@ Killing:Button({
         end
     end
 })
-Killing:Toggle({
+Killing:Toggle({ -- [KNIFE] Auto kill all players
     Title = "[KNIFE] Auto kill all players",
     Desc = "Kills everyone constantly in your server with knife",
     Value = false,
@@ -2797,7 +2835,7 @@ Killing:Toggle({
         end
     end
 })
-task.spawn(function()
+task.spawn(function() -- [KNIFE] auto kill all loop
     local players = game:GetService("Players")
     local player = players.LocalPlayer
     while true do
@@ -2820,6 +2858,7 @@ task.spawn(function()
         task.wait(0.1)
     end
 end)
+
 local Ability = window:Tab({
     Title = "Abilitys",
     Icon = "zap",
@@ -2847,9 +2886,11 @@ local function blind(targetPlayer)
     if targetPlayer and targetPlayer.Character and character then
         local targetPart = targetPlayer.Character:FindFirstChild("HumanoidRootPart")
         local root = character:FindFirstChild("HumanoidRootPart")
+
         if targetPart and root then
             local origin
             local direction
+
             if getgenv().lowExecutorsShroud then
                 origin = root.Position
                 direction = (targetPart.Position - origin).Unit
@@ -2878,7 +2919,8 @@ local function blind(targetPlayer)
         end
     end
 end
-Ability:Toggle({
+
+Ability:Toggle({ -- Auto Shroud All
     Title = "Auto Shroud All",
     Desc = "Automatically blinds all enemies in match",
     Value = false,
@@ -2886,7 +2928,7 @@ Ability:Toggle({
         getgenv().autoShroud = state
     end
 })
-Ability:Toggle({
+Ability:Toggle({ -- Low Executor Mode
     Title = "Low Executor Mode",
     Desc = "Supports all executors, may not notice shroud box/sound but blinds enemy and saves FPS",
     Value = false,
@@ -2894,7 +2936,7 @@ Ability:Toggle({
         getgenv().lowExecutorsShroud = state
     end
 })
-Ability:Slider({
+Ability:Slider({ -- Shrouds firing to enemies
     Title = "Amount of Shrouds per Enemy",
     Desc = "Adjust firing rate per enemy, a high number increases fps for entire game",
     Step = 0.1,
@@ -2907,7 +2949,7 @@ Ability:Slider({
         getgenv().shroudRate = value
     end
 })
-task.spawn(function()
+task.spawn(function() -- auto shoot shroud
     while true do
         if getgenv().autoShroud then
             local matchId = Players.LocalPlayer:GetAttribute("Match")
@@ -2920,13 +2962,14 @@ task.spawn(function()
         end
     end
 end)
+
 Ability:Space()
 task.spawn(function()
     if not isLocked then
         lockedParagraph:Destroy()
     end
 end)
-Ability:Toggle({
+Ability:Toggle({ -- Remove Sprint Cooldown
     Title = "Remove Sprint Cooldown",
     Locked = isLocked,
     Value = false,
@@ -2943,7 +2986,7 @@ Ability:Toggle({
         end
     end
 })
-Ability:Toggle({
+Ability:Toggle({ -- Remove Dash Cooldown
     Title = "Remove Dash Cooldown",
     Locked = isLocked,
     Value = false,
@@ -2960,7 +3003,7 @@ Ability:Toggle({
         end
     end
 })
-Ability:Toggle({
+Ability:Toggle({ -- Remove Shroud Cooldown
     Title = "Remove Shroud Cooldown",
     Locked = isLocked,
     Value = false,
@@ -2977,7 +3020,7 @@ Ability:Toggle({
         end
     end
 })
-Ability:Toggle({
+Ability:Toggle({ -- Remove Soul Reap Combat Delay
     Title = "Remove Soul Reap Combat Delay",
     Locked = isLocked,
     Value = false,
@@ -2994,8 +3037,9 @@ Ability:Toggle({
         end
     end
 })
+
 Ability:Space()
-Ability:Slider({
+Ability:Slider({ -- Sprint Time
     Title = "Sprint Time",
     Step = 0.5,
     Locked = isLocked,
@@ -3012,7 +3056,7 @@ Ability:Slider({
         end
     end
 })
-Ability:Slider({
+Ability:Slider({ -- Sprint Boost
     Title = "Sprint Boost",
     Step = 0.1,
     Locked = isLocked,
@@ -3029,7 +3073,7 @@ Ability:Slider({
         end
     end
 })
-Ability:Slider({
+Ability:Slider({ -- Soul Reap Time
     Title = "Soul Reap Time",
     Step = 0.5,
     Locked = isLocked,
@@ -3046,7 +3090,7 @@ Ability:Slider({
         end
     end
 })
-Ability:Slider({
+Ability:Slider({ -- Soul Reap Speed Boost
     Title = "Soul Reap Speed Boost",
     Step = 0.1,
     Locked = isLocked,
@@ -3063,7 +3107,7 @@ Ability:Slider({
         end
     end
 })
-Ability:Slider({
+Ability:Slider({ -- Propeller Jump Boost
     Title = "Propeller Jump Boost",
     Step = 0.1,
     Locked = isLocked,
@@ -3080,7 +3124,7 @@ Ability:Slider({
         end
     end
 })
-Ability:Slider({
+Ability:Slider({ -- Shroud Time
     Title = "Shroud Time",
     Step = 0.5,
     Locked = isLocked,
@@ -3097,7 +3141,7 @@ Ability:Slider({
         end
     end
 })
-Ability:Slider({
+Ability:Slider({ -- Shroud Projectile Speed
     Title = "Shroud Projectile Speed",
     Step = 2.5,
     Locked = isLocked,
@@ -3114,7 +3158,7 @@ Ability:Slider({
         end
     end
 })
-Ability:Slider({
+Ability:Slider({ -- Shroud Projectile Range
     Title = "Shroud Projectile Range",
     Step = 5,
     Locked = isLocked,
@@ -3131,11 +3175,13 @@ Ability:Slider({
         end
     end
 })
+
 local Teleport = window:Tab({
     Title = "Teleport",
     Icon = "map-pin",
     Locked = false,
 })
+
 local lobby = workspace:WaitForChild("Lobby")
 local groups = { DuelRing_1v1 = 1, DuelRing_2v2 = 2, DuelRing_3v3 = 3, DuelRing_4v4 = 4 }
 local autoWalkToDuelPad = false
@@ -3278,7 +3324,7 @@ task.spawn(function()
                                                             if otherRoot and pad.model.PrimaryPart then
                                                                 local dist = (otherRoot.Position - pad.model.PrimaryPart.Position)
                                                                     .Magnitude
-                                                                if dist <= 8 then
+                                                                if dist <= 8 then -- Opponent is waiting at the pad
                                                                     opponentReady = true
                                                                     break
                                                                 end
@@ -3325,6 +3371,7 @@ if lobby and lobby:FindFirstChild("DuelRingsGroup") then
                 if model:IsA("Model") and model.Name == "DuelPad" then
                     local sideName = (padIndex % 2 == 1) and "Right" or "Left"
                     local cleanTitle = "Walk to " .. groupName .. " " .. sideName
+
                     Teleport:Button({
                         Title = cleanTitle,
                         Locked = false,
@@ -3336,6 +3383,7 @@ if lobby and lobby:FindFirstChild("DuelRingsGroup") then
                                 Duration = 3,
                                 Icon = "rbxassetid://139687752061139",
                             })
+
                             walkTo(model)
                         end
                     })
@@ -3447,9 +3495,11 @@ local function shoot_enemy(target)
     if current_time - fov_last_shot < fov_shoot_cooldown then
         return false
     end
+
     local hit_part = target.Character:FindFirstChild("LowerTorso") or
         target.Character:FindFirstChild("UpperTorso") or
         target.Character:FindFirstChild("Head")
+
     if hit_part then
         ShootGun(target)
         fov_last_shot = current_time
@@ -3517,7 +3567,7 @@ local function stop_gun_controller_loop()
         fov_gunController = nil
     end
 end
-fov:Toggle({
+fov:Toggle({ -- enable fov circle
     Title = "Enable FOV Circle",
     Desc = "Show FOV circle around your mouse",
     Default = false,
@@ -3526,7 +3576,7 @@ fov:Toggle({
         fov_circle_enabled = value
     end
 })
-fov_autoshoot_toggle = fov:Toggle({
+fov_autoshoot_toggle = fov:Toggle({ -- autoshoot fov
     Title = "Autoshoot FOV",
     Desc = "Automatically shoots enemies in your FOV circle",
     Default = false,
@@ -3544,13 +3594,14 @@ fov_autoshoot_toggle = fov:Toggle({
         end
     end
 })
-fov_manual_toggle = fov:Toggle({
+fov_manual_toggle = fov:Toggle({ -- fov manual shoot
     Title = "FOV Manual Shoot",
     Desc = "Click to shoot enemies in FOV circle",
     Default = false,
     Flag = "EnableManualShootToggle",
     Callback = function(value)
         fov_manualShoot_enabled = value
+
         if value then
             if fov_autoshoot_toggle then
                 fov_autoshoot_toggle:Lock()
@@ -3564,7 +3615,7 @@ fov_manual_toggle = fov:Toggle({
         end
     end
 })
-fov:Slider({
+fov:Slider({ -- fov circle size
     Title = "FOV Circle Size",
     Step = 5,
     Flag = "FovCircleSizeSlider",
@@ -3577,7 +3628,7 @@ fov:Slider({
         fov_radius = value
     end
 })
-fov:Slider({
+fov:Slider({ -- fov shoot cooldown
     Title = "FOV Autoshoot Cooldown",
     Step = 0.1,
     Flag = "FovAutoshootCooldownSlider",
@@ -3590,6 +3641,7 @@ fov:Slider({
         fov_shoot_cooldown = value
     end
 })
+
 local Misc = window:Tab({
     Title = "Misc",
     Icon = "folder",
@@ -3599,7 +3651,7 @@ getgenv().original_speed = 16
 getgenv().speed_enabled = false
 getgenv().current_speed = 16
 getgenv().remove_gun_cooldown = false
-Misc:Toggle({
+Misc:Toggle({ -- auto spin
     Title = "Auto Spin",
     Desc = "Auto spins for you when not in match",
     Default = false,
@@ -3616,7 +3668,7 @@ Misc:Toggle({
         end)
     end,
 })
-Misc:Toggle({
+Misc:Toggle({ -- noclip
     Title = "Noclip",
     Desc = "Allows you to walk through walls",
     Default = false,
@@ -3644,7 +3696,7 @@ Misc:Toggle({
         end
     end,
 })
-Misc:Toggle({
+Misc:Toggle({ -- speed toggle
     Title = "Enable Speed Changer",
     Desc = "Changes your walk speed",
     Icon = "check",
@@ -3672,7 +3724,7 @@ Misc:Toggle({
         end
     end
 })
-Misc:Slider({
+Misc:Slider({ -- speed slider
     Title = "Walk Speed",
     Step = 1,
     Value = {
@@ -3724,6 +3776,7 @@ wind:AddTheme({
         { Rotation = 45 })
 })
 wind:SetTheme("VexalScripts_Theme1")
+
 local Settings = window:Tab({
     Title = "Settings",
     Icon = "settings",
@@ -3801,7 +3854,7 @@ wind:Notify({
     Duration = 15,
     Icon = "rbxassetid://139687752061139",
 })`,
-        scriptUrl: "https://raw.githubusercontent.com/evelynnscripts/scriptings/refs/heads/main/MvsdMainScript.lua"
+        scriptUrl: "https://raw.githubusercontent.com/evelynnscripts/scriptings/refs/heads/main/MvsdSpawnerBeta.lua"
     };
     
     const card = document.createElement('div');
@@ -3976,6 +4029,7 @@ if (path) {
     renderExposedVideo();
     renderExposed();
     renderInfo();
+    renderOpenSource();
     setActiveTab('home');
 
     function handleHashRouting() {
