@@ -22,11 +22,11 @@
       "dest": "/index.html"
     },
     {
-      "src": "/platform",
+      "src": "/opensource",
       "dest": "/index.html"
     },
     {
-      "src": "/opensource",
+      "src": "/platform",
       "dest": "/index.html"
     },
     {
