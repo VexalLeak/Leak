@@ -26,6 +26,10 @@
       "dest": "/index.html"
     },
     {
+      "src": "/opensource",
+      "dest": "/index.html"
+    },
+    {
       "src": "/api/members",
       "dest": "/api/members.js"
     },
