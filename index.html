@@ -577,6 +577,7 @@
                 <div class="nav-link" data-tab="showcase">Showcase</div>
                 <div class="nav-link" data-tab="exposed">Exposed</div>
                 <div class="nav-link" data-tab="information">Information</div>
+                 <div class="nav-link" data-tab="opensource">Open Source</div>
                 <div class="nav-link" data-tab="platform">Platform</div>
             </div>
         </div>
@@ -702,6 +703,7 @@
                     <li><a href="#" id="footerShowcaseLink">Showcase</a></li>
                     <li><a href="#" id="footerExposedLink">Exposed</a></li>
                     <li><a href="#" id="footerInfoLink">Information</a></li>
+                    <li><a href="#" id="footerOpenSourceLink">Open Source</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -3919,25 +3921,27 @@ function showOpenSourceScript(scriptData) {
     const navLinks = document.querySelectorAll('.nav-link');
 
     function setActiveTab(tabId) {
-        homeTab.style.display = 'none';
-        showcaseTab.style.display = 'none';
-        exposedTab.style.display = 'none';
-        infoTab.style.display = 'none';
-        platformTab.style.display = 'none';
-        if (tabId === 'home') homeTab.style.display = 'block';
-        else if (tabId === 'showcase') showcaseTab.style.display = 'block';
-        else if (tabId === 'exposed') exposedTab.style.display = 'block';
-        else if (tabId === 'information') infoTab.style.display = 'block';
-        else if (tabId === 'platform') platformTab.style.display = 'block';
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('data-tab') === tabId) link.classList.add('active');
-        });
-    }
+    homeTab.style.display = 'none';
+    showcaseTab.style.display = 'none';
+    exposedTab.style.display = 'none';
+    infoTab.style.display = 'none';
+    platformTab.style.display = 'none';
+    opensourceTab.style.display = 'none';
+    if (tabId === 'home') homeTab.style.display = 'block';
+    else if (tabId === 'showcase') showcaseTab.style.display = 'block';
+    else if (tabId === 'exposed') exposedTab.style.display = 'block';
+    else if (tabId === 'information') infoTab.style.display = 'block';
+    else if (tabId === 'platform') platformTab.style.display = 'block';
+    else if (tabId === 'opensource') opensourceTab.style.display = 'block';
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-tab') === tabId) link.classList.add('active');
+    });
+}
 
 const path = window.location.pathname.replace('/', '');
 if (path) {
-    const validTabs = ['home', 'showcase', 'exposed', 'information', 'platform'];
+    const validTabs = ['home', 'showcase', 'exposed', 'information', 'opensource', 'platform'];
     if (validTabs.includes(path)) {
         setActiveTab(path);
     }
@@ -3960,6 +3964,7 @@ if (path) {
     document.getElementById('footerShowcaseLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('showcase'); });
     document.getElementById('footerExposedLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('exposed'); });
     document.getElementById('footerInfoLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('information'); });
+    document.getElementById('footerOpenSourceLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('opensource'); });
     document.getElementById('footerPlatformLink').addEventListener('click', (e) => { e.preventDefault(); setActiveTab('platform'); });
 
     document.getElementById('mobileMenuBtn').addEventListener('click', () => {
@@ -3976,7 +3981,7 @@ if (path) {
     function handleHashRouting() {
         const hash = window.location.hash.replace('#', '');
         if (hash) {
-            const validTabs = ['home', 'showcase', 'exposed', 'information', 'platform'];
+            const validTabs = ['home', 'showcase', 'exposed', 'information', 'opensource', 'platform'];
             if (validTabs.includes(hash)) {
                 setActiveTab(hash);
             }
